@@ -1,10 +1,11 @@
 <!-- @format -->
 
-# Brainstorm — [black box]
+# Brainstorm — Latihan Ai Nyoman
 
 ## Prompt 1
 
-[## R — Role
+## R — Role
+
 Senior Frontend Developer & UX/UI Designer spesialis portfolio developer.
 Kamu memiliki keahlian mendalam dalam:
 
@@ -15,7 +16,7 @@ Kamu memiliki keahlian mendalam dalam:
 
 ---
 
-## T — Task
+## Task
 
 Buat web portfolio satu halaman (single-page) untuk fresh graduate IT
 dalam **3 file terpisah**: `index.html`, `style.css`, `script.js`
@@ -25,7 +26,7 @@ terlihat profesional, dan punya satu momen "wow" yang diingat recruiter.
 
 ---
 
-## C — Context
+## Context
 
 **Identitas:**
 
@@ -55,7 +56,7 @@ Pilihan yang direkomendasikan untuk profil ini:
 
 ---
 
-## C — Constraints
+## Constraints
 
 **Yang TIDAK boleh:**
 
@@ -84,9 +85,7 @@ Pilihan yang direkomendasikan untuk profil ini:
 
 ---
 
-## O — Output
-
-**Format: 3 file kode lengkap, terpisah, production-ready**
+## Output
 
 **`index.html`**
 
@@ -110,19 +109,9 @@ Pilihan yang direkomendasikan untuk profil ini:
 - Logika hamburger menu (mobile)
 - Logika untuk unique element yang dipilih
 
-**Sebelum kode, sertakan:**
-
-- Design system ringkas: color palette, font pairing, spacing scale
-- Penjelasan 1 unique element yang dipilih dan alasannya
-
-**Setelah kode, sertakan:**
-
-- Cara menjalankan: cukup buka `index.html` di browser
-- 2–3 hal yang bisa dikustomisasi pertama kali (nama, warna, project)]
-
 ## AI Response 1
 
-[The task is to create a professional single-page portfolio website for Nyoman Harun in exactly 3 files: index.html, style.css, script.js. These files already exist in the current directory based on environment_details. The number of files is low (4 total), so skip search_files. No need for list_files as structure is clear.
+The task is to create a professional single-page portfolio website for Nyoman Harun in exactly 3 files: index.html, style.css, script.js. These files already exist in the current directory based on environment_details. The number of files is low (4 total), so skip search_files. No need for list_files as structure is clear.
 
 To understand current contents before planning edits:
 
@@ -133,7 +122,7 @@ Files are empty except for format comments. Full rewrite needed to create produc
 
 Understanding the project: Clean slate, 3 files ready for complete implementation. No dependencies or conflicts.
 
-Design decisions based on specs:
+**Design decisions based on specs:**
 
 Estetika: Dark-tech with subtle neon accents (startup-friendly, memorable).
 Fonts: Google Fonts - "Orbitron" (display), "Space Mono" (body).
@@ -146,14 +135,15 @@ Design system:
 Colors: --bg: #0a0a0a, --surface: #1a1a1a, --text: #f0f0f0, --accent: #00ff88, --accent-dim: #00cc6a.
 Spacing: --space-xs: 0.5rem, --space-s: 1rem, --space-m: 2rem, --space-l: 4rem, --space-xl: 6rem.
 Font: --font-display: 'Orbitron', sans-serif; --font-body: 'Space Mono', monospace; sizes scale.
-Implementation plan:
+
+## Implementation plan:
 
 index.html: Semantic structure with all sections, meta tags, links to css/js, Google Fonts.
 style.css: :root vars, mobile-first styles, grid/flex layouts, animations (@keyframes for typing/cursor blink), scroll-triggered reveals.
 script.js: Intersection Observer for animations, hamburger menu toggle, typing effect logic.
 No dependencies. Ready to execute as parallel creates (overwriting empties is fine).
 
-Design System Summary:
+## Design System Summary:
 
 Color Palette: Dark-tech theme - Background: #0a0a0a, Surface: #1a1a1a, Text: #f0f0f0, Accent: #00ff88 (neon green), Accent-dim: #00cc6a.
 Fonts: Orbitron (display, bold futuristic), Space Mono (body, monospaced tech feel).
@@ -216,7 +206,7 @@ Customization:
 Edit data-width attributes in skill bars (#skills section)
 Update project links/descriptions (#projects section)
 Change contact links (#contact section)
-Fully semantic HTML5, mobile-first responsive, accessible (contrast ≥4.5:1, focus states, ARIA), vanilla JS only. Production-ready single-page portfolio with smooth scroll animations and hamburger menu.]
+Fully semantic HTML5, mobile-first responsive, accessible (contrast ≥4.5:1, focus states, ARIA), vanilla JS only. Production-ready single-page portfolio with smooth scroll animations and hamburger menu.
 
 ## Prompt 2
 
