@@ -1,193 +1,1457 @@
 <!-- @format -->
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="light">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Portfolio — Aria Chen</title>
 		<meta
 			name="description"
-			content="Nyoman Harun - Fresh Graduate IT specializing in JavaScript, TypeScript, React. Ready for startup and corporate opportunities." />
-		<meta
-			property="og:title"
-			content="Nyoman Harun - Front-End Developer Portfolio" />
-		<meta
-			property="og:description"
-			content="Fresh Graduate IT | JavaScript, TypeScript, React" />
-		<meta property="og:type" content="website" />
-		<title>Nyoman Harun | Front-End Developer</title>
-		<link rel="stylesheet" href="style.css" />
+			content="Full-stack developer portfolio — building delightful web experiences with clean code." />
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>" />
+
+		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=JetBrains+Mono:wght@400&display=swap"
 			rel="stylesheet" />
+
+		<!-- Tailwind CDN -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+				darkMode: "class",
+				theme: {
+					extend: {
+						fontFamily: {
+							heading: ["Outfit", "system-ui", "sans-serif"],
+							body: ['"DM Sans"', "system-ui", "sans-serif"],
+							mono: ['"JetBrains Mono"', '"Fira Mono"', "monospace"],
+						},
+					},
+				},
+			};
+		</script>
+
+		<!-- GSAP -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+		<!-- Lucide Icons -->
+		<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+		<link rel="stylesheet" href="style.css" />
 	</head>
-	<body>
-		<header>
-			<nav class="nav" role="navigation" aria-label="Main navigation">
-				<div class="nav-brand">NH</div>
-				<button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-					<span></span>
-					<span></span>
-					<span></span>
-				</button>
-				<ul class="nav-list">
-					<li><a href="#hero" class="nav-link">Home</a></li>
-					<li><a href="#about" class="nav-link">About</a></li>
-					<li><a href="#skills" class="nav-link">Skills</a></li>
-					<li><a href="#projects" class="nav-link">Projects</a></li>
-					<li><a href="#contact" class="nav-link">Contact</a></li>
+
+	<body class="font-body">
+		<!-- Bokeh Cursor Aura -->
+		<div id="bokeh-container" aria-hidden="true"></div>
+
+		<!-- Toast Container -->
+		<div id="toast-container" role="alert" aria-live="polite"></div>
+
+		<!-- ======== NAVIGATION ======== -->
+		<header id="nav" role="banner">
+			<nav class="nav-inner" aria-label="Main navigation">
+				<a href="#hero" class="nav-logo" aria-label="Home">
+					<span class="nav-logo-dot"></span>
+					Aria.dev
+				</a>
+
+				<ul class="nav-links" role="list">
+					<li><a href="#about">About</a></li>
+					<li><a href="#skills">Skills</a></li>
+					<li><a href="#projects">Projects</a></li>
+					<li><a href="#experience">Experience</a></li>
+					<li><a href="#faq">FAQ</a></li>
+					<li><a href="#contact">Contact</a></li>
 				</ul>
+
+				<div class="nav-actions">
+					<button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+						<i
+							data-lucide="moon"
+							class="icon-moon"
+							style="width: 18px; height: 18px"></i>
+						<i
+							data-lucide="sun"
+							class="icon-sun"
+							style="width: 18px; height: 18px"></i>
+					</button>
+					<button
+						class="hamburger"
+						aria-label="Open menu"
+						aria-expanded="false"
+						type="button">
+						<i data-lucide="menu" style="width: 22px; height: 22px"></i>
+					</button>
+				</div>
 			</nav>
 		</header>
 
+		<!-- Mobile Menu Overlay -->
+		<div
+			id="mobile-menu"
+			role="dialog"
+			aria-label="Mobile navigation"
+			aria-hidden="true">
+			<a href="#about">About</a>
+			<a href="#skills">Skills</a>
+			<a href="#projects">Projects</a>
+			<a href="#experience">Experience</a>
+			<a href="#faq">FAQ</a>
+			<a href="#contact">Contact</a>
+		</div>
+
 		<main>
-			<section id="hero" class="hero">
-				<div class="hero-content">
-					<h1 class="hero-title">
-						<span class="typing-text"></span>
-						<span class="cursor">|</span>
-					</h1>
-					<p class="hero-subtitle">
-						Fresh Graduate IT | JavaScript, TypeScript, React
+			<!-- ======== HERO ======== -->
+			<section
+				id="hero"
+				class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+				<!-- Decorative blobs -->
+				<div
+					class="hero-blob"
+					style="
+						width: 500px;
+						height: 500px;
+						background: var(--accent);
+						top: -10%;
+						right: -8%;
+					"></div>
+				<div
+					class="hero-blob"
+					style="
+						width: 350px;
+						height: 350px;
+						background: rgba(var(--accent-rgb), 0.5);
+						bottom: 5%;
+						left: -5%;
+					"></div>
+
+				<div class="relative z-10 text-center max-w-2xl mx-auto">
+					<p
+						class="hero-greeting font-heading font-600 text-sm tracking-widest uppercase opacity-0"
+						style="color: var(--accent)">
+						Hello, I'm
 					</p>
-					<a href="#projects" class="cta-button">View My Work</a>
+					<h1
+						class="hero-name font-heading font-extrabold leading-none mt-3 opacity-0"
+						style="font-size: clamp(2.25rem, 7vw, 3.5rem); letter-spacing: -0.03em">
+						Aria Chen
+					</h1>
+					<p
+						class="hero-role font-heading font-bold text-lg mt-2 opacity-0"
+						style="color: var(--text-2)">
+						Full-Stack Developer
+					</p>
+					<p
+						class="hero-desc mt-5 opacity-0"
+						style="
+							color: var(--text-2);
+							max-width: 480px;
+							margin-left: auto;
+							margin-right: auto;
+						">
+						I craft delightful web experiences with clean code and a touch of
+						playfulness. Currently focused on building accessible, performant
+						applications that people genuinely enjoy using.
+					</p>
+					<div
+						class="hero-cta-group flex flex-wrap items-center justify-center gap-4 mt-8 opacity-0">
+						<a href="#projects" class="cta-primary">
+							See My Work
+							<i data-lucide="arrow-right" style="width: 16px; height: 16px"></i>
+						</a>
+						<a href="#contact" class="cta-secondary"> Get in Touch </a>
+					</div>
+					<div class="scroll-indicator mt-16">
+						<span>Scroll</span>
+						<div class="scroll-indicator-arrow">
+							<i data-lucide="chevron-down" style="width: 24px; height: 24px"></i>
+						</div>
+					</div>
 				</div>
 			</section>
 
-			<section id="about" class="section">
-				<div class="container">
-					<h2 class="section-title">About Me</h2>
-					<div class="about-content">
-						<p>
-							Passionate front-end developer transitioning from academia to industry.
-							Skilled in modern web technologies with a focus on performant, accessible
-							user experiences. Eager to contribute to innovative startup teams or
-							established corporate projects.
+			<!-- ======== ABOUT ======== -->
+			<section id="about" class="py-16 md:py-24 px-6">
+				<div
+					class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
+					<!-- Photo -->
+					<div class="about-photo-wrapper about-image">
+						<div class="about-photo-frame"></div>
+						<img
+							src="https://picsum.photos/seed/cute-dev-portrait/600/600.jpg"
+							alt="Aria Chen portrait"
+							class="about-photo"
+							loading="lazy" />
+					</div>
+
+					<!-- Content -->
+					<div class="about-content flex-1">
+						<p class="section-label">About Me</p>
+						<h2 class="section-title">
+							Turning complex problems into simple, beautiful solutions
+						</h2>
+						<p class="section-desc" style="max-width: none">
+							I'm a developer who believes great software should feel as good as it
+							works. With over five years of experience spanning startups and product
+							teams, I specialize in frontend architecture, design systems, and the
+							tricky middle ground where design meets engineering.
+						</p>
+						<p class="mt-4" style="color: var(--text-2); font-size: 0.9375rem">
+							When I'm not coding, you'll find me sketching UI concepts in a coffee
+							shop, contributing to open-source projects, or exploring new ways to make
+							the web a little more delightful.
+						</p>
+
+						<!-- Stats -->
+						<div class="stats-grid">
+							<div class="stat-item">
+								<div class="stat-value" data-count="5">0</div>
+								<div class="stat-label">Years Experience</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-value" data-count="30">0</div>
+								<div class="stat-label">Projects Shipped</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-value" data-count="15">0</div>
+								<div class="stat-label">Happy Clients</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-value" data-count="999">0</div>
+								<div class="stat-label">Cups of Coffee</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ======== SKILLS ======== -->
+			<section
+				id="skills"
+				class="py-16 md:py-24 px-6"
+				style="background: var(--surface-2); transition: background-color 0.4s">
+				<div class="max-w-6xl mx-auto">
+					<div class="text-center mb-12">
+						<p class="section-label">Skills</p>
+						<h2 class="section-title">Technologies and tools I use daily</h2>
+						<p class="section-desc mx-auto">
+							I pick the right tool for each job, but these are the ones I reach for
+							most often.
 						</p>
 					</div>
+
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+						<!-- Frontend -->
+						<div class="highlight-card skill-card">
+							<div class="skill-card-icon">
+								<i data-lucide="layout" style="width: 22px; height: 22px"></i>
+							</div>
+							<h3 class="skill-card-title">Frontend</h3>
+							<ul class="skill-card-list">
+								<li>HTML5 / Semantic HTML</li>
+								<li>CSS3 / TailwindCSS</li>
+								<li>JavaScript / TypeScript</li>
+								<li>Vue.js / React</li>
+								<li>GSAP / Framer Motion</li>
+							</ul>
+						</div>
+
+						<!-- Backend -->
+						<div class="highlight-card skill-card">
+							<div class="skill-card-icon">
+								<i data-lucide="server" style="width: 22px; height: 22px"></i>
+							</div>
+							<h3 class="skill-card-title">Backend</h3>
+							<ul class="skill-card-list">
+								<li>Node.js / Express</li>
+								<li>Python / FastAPI</li>
+								<li>PostgreSQL / MongoDB</li>
+								<li>REST / GraphQL</li>
+								<li>Docker / AWS</li>
+							</ul>
+						</div>
+
+						<!-- Design -->
+						<div class="highlight-card skill-card">
+							<div class="skill-card-icon">
+								<i data-lucide="palette" style="width: 22px; height: 22px"></i>
+							</div>
+							<h3 class="skill-card-title">Design & Tools</h3>
+							<ul class="skill-card-list">
+								<li>Figma / Sketch</li>
+								<li>Git / GitHub</li>
+								<li>CI/CD Pipelines</li>
+								<li>Testing (Jest, Cypress)</li>
+								<li>Performance Optimization</li>
+							</ul>
+						</div>
+
+						<!-- Soft Skills -->
+						<div class="highlight-card skill-card">
+							<div class="skill-card-icon">
+								<i data-lucide="heart" style="width: 22px; height: 22px"></i>
+							</div>
+							<h3 class="skill-card-title">Soft Skills</h3>
+							<ul class="skill-card-list">
+								<li>Technical Writing</li>
+								<li>Team Leadership</li>
+								<li>Agile / Scrum</li>
+								<li>Client Communication</li>
+								<li>Mentoring</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</section>
 
-			<section id="skills" class="section">
-				<div class="container">
-					<h2 class="section-title">Skills</h2>
-					<div class="skills-grid">
-						<div class="skill-item">
-							<h3>JavaScript</h3>
-							<div class="skill-bar">
-								<div class="skill-progress" data-width="90"></div>
+			<!-- ======== PROJECTS ======== -->
+			<section id="projects" class="py-16 md:py-24 px-6">
+				<div class="max-w-6xl mx-auto">
+					<div class="text-center mb-12">
+						<p class="section-label">Projects</p>
+						<h2 class="section-title">A selection of recent work</h2>
+						<p class="section-desc mx-auto">
+							Things I've built that I'm genuinely proud of — from concept to launch.
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<!-- Project 1 -->
+						<article class="project-card">
+							<div class="project-card-image">
+								<img
+									src="https://picsum.photos/seed/bloom-dashboard/800/500.jpg"
+									alt="Bloom Dashboard screenshot"
+									loading="lazy" />
+								<span class="project-card-featured">Featured</span>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">Bloom Dashboard</h3>
+								<p class="project-card-desc">
+									A real-time analytics dashboard with beautiful data visualizations and
+									a delightful micro-interaction system for 50k+ daily users.
+								</p>
+								<div class="project-card-tags">
+									<span class="project-card-tag">Vue.js</span>
+									<span class="project-card-tag">D3.js</span>
+									<span class="project-card-tag">Firebase</span>
+								</div>
+								<div class="project-card-links">
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Bloom Dashboard live">
+										<i data-lucide="external-link" style="width: 14px; height: 14px"></i>
+										Live Demo
+									</a>
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Bloom Dashboard source code">
+										<i data-lucide="github" style="width: 14px; height: 14px"></i> Source
+									</a>
+								</div>
+							</div>
+						</article>
+
+						<!-- Project 2 -->
+						<article class="project-card">
+							<div class="project-card-image">
+								<img
+									src="https://picsum.photos/seed/petite-commerce/800/500.jpg"
+									alt="Petite Commerce screenshot"
+									loading="lazy" />
+								<span class="project-card-featured">Featured</span>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">Petite Commerce</h3>
+								<p class="project-card-desc">
+									A minimal e-commerce platform designed for small artisans, with a focus
+									on mobile-first checkout flow and inventory management.
+								</p>
+								<div class="project-card-tags">
+									<span class="project-card-tag">Next.js</span>
+									<span class="project-card-tag">Stripe</span>
+									<span class="project-card-tag">PostgreSQL</span>
+								</div>
+								<div class="project-card-links">
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Petite Commerce live">
+										<i data-lucide="external-link" style="width: 14px; height: 14px"></i>
+										Live Demo
+									</a>
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Petite Commerce source code">
+										<i data-lucide="github" style="width: 14px; height: 14px"></i> Source
+									</a>
+								</div>
+							</div>
+						</article>
+
+						<!-- Project 3 -->
+						<article class="project-card">
+							<div class="project-card-image">
+								<img
+									src="https://picsum.photos/seed/mood-tracker-app/800/500.jpg"
+									alt="Mood Tracker screenshot"
+									loading="lazy" />
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">Mood Tracker</h3>
+								<p class="project-card-desc">
+									A mental wellness app with soft animations, streak tracking, and
+									privacy-first local storage. No cloud, no worry.
+								</p>
+								<div class="project-card-tags">
+									<span class="project-card-tag">React Native</span>
+									<span class="project-card-tag">Reanimated</span>
+									<span class="project-card-tag">AsyncStorage</span>
+								</div>
+								<div class="project-card-links">
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Mood Tracker live">
+										<i data-lucide="external-link" style="width: 14px; height: 14px"></i>
+										Live Demo
+									</a>
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Mood Tracker source code">
+										<i data-lucide="github" style="width: 14px; height: 14px"></i> Source
+									</a>
+								</div>
+							</div>
+						</article>
+
+						<!-- Project 4 -->
+						<article class="project-card">
+							<div class="project-card-image">
+								<img
+									src="https://picsum.photos/seed/code-snippet-vault/800/500.jpg"
+									alt="Code Snippet Vault screenshot"
+									loading="lazy" />
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">Code Snippet Vault</h3>
+								<p class="project-card-desc">
+									A developer tool for organizing and sharing code snippets with syntax
+									highlighting, tagging, and team workspaces.
+								</p>
+								<div class="project-card-tags">
+									<span class="project-card-tag">Svelte</span>
+									<span class="project-card-tag">TailwindCSS</span>
+									<span class="project-card-tag">Supabase</span>
+								</div>
+								<div class="project-card-links">
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Code Snippet Vault live">
+										<i data-lucide="external-link" style="width: 14px; height: 14px"></i>
+										Live Demo
+									</a>
+									<a
+										href="#"
+										class="project-card-link"
+										aria-label="View Code Snippet Vault source code">
+										<i data-lucide="github" style="width: 14px; height: 14px"></i> Source
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- ======== EXPERIENCE ======== -->
+			<section
+				id="experience"
+				class="py-16 md:py-24 px-6"
+				style="background: var(--surface-2); transition: background-color 0.4s">
+				<div class="max-w-3xl mx-auto">
+					<div class="text-center mb-12">
+						<p class="section-label">Experience</p>
+						<h2 class="section-title">My professional journey so far</h2>
+					</div>
+
+					<div class="space-y-3">
+						<!-- Experience 1 -->
+						<div class="accordion-item timeline-item">
+							<button class="accordion-trigger" aria-expanded="false" type="button">
+								<div class="accordion-trigger-left">
+									<span class="accordion-trigger-title">Senior Frontend Developer</span>
+									<span class="accordion-trigger-sub"
+										>Acme Corp &middot; 2022 — Present</span
+									>
+								</div>
+								<i data-lucide="chevron-down" class="accordion-chevron"></i>
+							</button>
+							<div class="accordion-content" role="region">
+								<div class="accordion-content-inner">
+									<p
+										style="color: var(--text-2); font-size: 0.9375rem; line-height: 1.7">
+										Leading the frontend architecture for a SaaS platform serving 50,000+
+										daily active users. Built a component design system from scratch,
+										reducing UI development time by 35%. Optimized critical rendering
+										path, cutting LCP by 40%. Mentoring a team of four junior developers.
+									</p>
+									<div class="accordion-tags">
+										<span class="accordion-tag">Vue.js</span>
+										<span class="accordion-tag">Design Systems</span>
+										<span class="accordion-tag">Performance</span>
+										<span class="accordion-tag">Leadership</span>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="skill-item">
-							<h3>TypeScript</h3>
-							<div class="skill-bar">
-								<div class="skill-progress" data-width="85"></div>
+
+						<!-- Experience 2 -->
+						<div class="accordion-item timeline-item">
+							<button class="accordion-trigger" aria-expanded="false" type="button">
+								<div class="accordion-trigger-left">
+									<span class="accordion-trigger-title">Full-Stack Developer</span>
+									<span class="accordion-trigger-sub"
+										>Bloom Studio &middot; 2020 — 2022</span
+									>
+								</div>
+								<i data-lucide="chevron-down" class="accordion-chevron"></i>
+							</button>
+							<div class="accordion-content" role="region">
+								<div class="accordion-content-inner">
+									<p
+										style="color: var(--text-2); font-size: 0.9375rem; line-height: 1.7">
+										Built and shipped 12+ client projects from concept to deployment
+										across e-commerce, SaaS, and marketing domains. Introduced automated
+										testing pipelines, achieving 85% code coverage. Collaborated closely
+										with designers to translate Figma prototypes into pixel-perfect
+										interfaces.
+									</p>
+									<div class="accordion-tags">
+										<span class="accordion-tag">React</span>
+										<span class="accordion-tag">Node.js</span>
+										<span class="accordion-tag">PostgreSQL</span>
+										<span class="accordion-tag">Testing</span>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="skill-item">
-							<h3>React</h3>
-							<div class="skill-bar">
-								<div class="skill-progress" data-width="80"></div>
+
+						<!-- Experience 3 -->
+						<div class="accordion-item timeline-item">
+							<button class="accordion-trigger" aria-expanded="false" type="button">
+								<div class="accordion-trigger-left">
+									<span class="accordion-trigger-title">Junior Developer</span>
+									<span class="accordion-trigger-sub"
+										>Digital Garden &middot; 2019 — 2020</span
+									>
+								</div>
+								<i data-lucide="chevron-down" class="accordion-chevron"></i>
+							</button>
+							<div class="accordion-content" role="region">
+								<div class="accordion-content-inner">
+									<p
+										style="color: var(--text-2); font-size: 0.9375rem; line-height: 1.7">
+										Started my professional journey building marketing sites, landing
+										pages, and internal tools. Learned the importance of clean code,
+										version control, and user empathy. Contributed to the company's first
+										component library and wrote documentation that became the team
+										reference.
+									</p>
+									<div class="accordion-tags">
+										<span class="accordion-tag">HTML</span>
+										<span class="accordion-tag">CSS</span>
+										<span class="accordion-tag">JavaScript</span>
+										<span class="accordion-tag">PHP</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="projects" class="section">
-				<div class="container">
-					<h2 class="section-title">Projects</h2>
-					<div class="projects-grid">
-						<article class="project-card">
-							<div
-								class="project-image"
-								role="img"
-								aria-label="E-commerce Dashboard Preview"></div>
-							<div class="project-content">
-								<h3>E-commerce Dashboard</h3>
-								<p>
-									React + TypeScript dashboard with real-time analytics and responsive
-									design.
-								</p>
-								<div class="project-links">
-									<a href="#" aria-label="View E-commerce Dashboard live">Live</a>
-									<a href="#" aria-label="View E-commerce Dashboard source">Code</a>
+			<!-- ======== FAQ ======== -->
+			<section id="faq" class="py-16 md:py-24 px-6">
+				<div class="max-w-3xl mx-auto">
+					<div class="text-center mb-12">
+						<p class="section-label">FAQ</p>
+						<h2 class="section-title">Frequently asked questions</h2>
+						<p class="section-desc mx-auto">
+							Quick answers to things people ask me a lot.
+						</p>
+					</div>
+
+					<div class="space-y-3">
+						<div class="accordion-item faq-item">
+							<button class="accordion-trigger" aria-expanded="false" type="button">
+								<span class="accordion-trigger-title" style="flex: 1"
+									>What's your current availability?</span
+								>
+								<i data-lucide="chevron-down" class="accordion-chevron"></i>
+							</button>
+							<div class="accordion-content" role="region">
+								<div class="accordion-content-inner">
+									<p
+										style="color: var(--text-2); font-size: 0.9375rem; line-height: 1.7">
+										I'm currently open to freelance projects and full-time opportunities.
+										For freelance, I typically book 4–6 weeks in advance. For full-time
+										roles, I'm exploring positions with strong frontend culture and
+										design-minded teams. Let's chat about timelines!
+									</p>
 								</div>
 							</div>
-						</article>
-						<article class="project-card">
-							<div
-								class="project-image"
-								role="img"
-								aria-label="Task Manager App Preview"></div>
-							<div class="project-content">
-								<h3>Task Manager</h3>
-								<p>
-									Full-stack app built with React, featuring drag & drop and local
-									storage sync.
-								</p>
-								<div class="project-links">
-									<a href="#" aria-label="View Task Manager live">Live</a>
-									<a href="#" aria-label="View Task Manager source">Code</a>
+						</div>
+
+						<div class="accordion-item faq-item">
+							<button class="accordion-trigger" aria-expanded="false" type="button">
+								<span class="accordion-trigger-title" style="flex: 1"
+									>What's your typical project process?</span
+								>
+								<i data-lucide="chevron-down" class="accordion-chevron"></i>
+							</button>
+							<div class="accordion-content" role="region">
+								<div class="accordion-content-inner">
+									<p
+										style="color: var(--text-2); font-size: 0.9375rem; line-height: 1.7">
+										I follow a structured approach: Discovery (understand goals and
+										constraints), Design (wireframes and prototypes), Develop (iterative
+										sprints with check-ins), Test (cross-browser, accessibility,
+										performance), and Launch (deployment + handoff). You're never in the
+										dark — expect updates at every milestone.
+									</p>
 								</div>
 							</div>
-						</article>
-						<article class="project-card">
-							<div
-								class="project-image"
-								role="img"
-								aria-label="Portfolio Website Preview"></div>
-							<div class="project-content">
-								<h3>Portfolio Site</h3>
-								<p>
-									This very site! Vanilla JS + CSS animations showcasing modern web
-									skills.
-								</p>
-								<div class="project-links">
-									<a href="#" aria-label="View Portfolio live">Live</a>
-									<a href="#" aria-label="View Portfolio source">Code</a>
+						</div>
+
+						<div class="accordion-item faq-item">
+							<button class="accordion-trigger" aria-expanded="false" type="button">
+								<span class="accordion-trigger-title" style="flex: 1"
+									>Do you work with design files?</span
+								>
+								<i data-lucide="chevron-down" class="accordion-chevron"></i>
+							</button>
+							<div class="accordion-content" role="region">
+								<div class="accordion-content-inner">
+									<p
+										style="color: var(--text-2); font-size: 0.9375rem; line-height: 1.7">
+										Absolutely. I'm comfortable working with Figma, Sketch, and Adobe XD
+										files. I can also step in earlier and help refine designs for
+										feasibility, accessibility, and animation potential. Clean handoff
+										files make everyone's life easier.
+									</p>
 								</div>
 							</div>
-						</article>
+						</div>
+
+						<div class="accordion-item faq-item">
+							<button class="accordion-trigger" aria-expanded="false" type="button">
+								<span class="accordion-trigger-title" style="flex: 1"
+									>How do you handle project communication?</span
+								>
+								<i data-lucide="chevron-down" class="accordion-chevron"></i>
+							</button>
+							<div class="accordion-content" role="region">
+								<div class="accordion-content-inner">
+									<p
+										style="color: var(--text-2); font-size: 0.9375rem; line-height: 1.7">
+										I use Slack or Teams for daily async updates, Notion or Linear for
+										project documentation and task tracking, and weekly video calls for
+										design reviews and demos. You'll always know where things stand and
+										what's coming next.
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="contact" class="section">
-				<div class="container">
-					<h2 class="section-title">Get In Touch</h2>
-					<div class="contact-content">
-						<p>Ready to discuss opportunities? Send me a message.</p>
-						<div class="contact-links">
-							<a href="mailto:nyoman.harun@example.com" class="contact-link">Email</a>
-							<a
-								href="https://linkedin.com/in/nyomanharun"
-								class="contact-link"
-								target="_blank"
-								rel="noopener"
-								>LinkedIn</a
-							>
-							<a
-								href="https://github.com/nyomanharun"
-								class="contact-link"
-								target="_blank"
-								rel="noopener"
-								>GitHub</a
-							>
+			<!-- ======== CONTACT ======== -->
+			<section
+				id="contact"
+				class="py-16 md:py-24 px-6"
+				style="background: var(--surface-2); transition: background-color 0.4s">
+				<div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16">
+					<!-- Form -->
+					<div class="contact-form flex-1">
+						<p class="section-label">Contact</p>
+						<h2 class="section-title">Let's work together</h2>
+						<p class="section-desc mb-8">
+							Have a project in mind? I'd love to hear about it. Fill out the form and
+							I'll get back to you within 24 hours.
+						</p>
+
+						<form id="contact-form" novalidate>
+							<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+								<div class="form-group">
+									<label for="field-name" class="form-label">Your Name</label>
+									<input
+										type="text"
+										id="field-name"
+										name="name"
+										class="form-input"
+										placeholder="Jane Doe"
+										required
+										autocomplete="name" />
+									<p class="form-error">Please enter your name.</p>
+								</div>
+								<div class="form-group">
+									<label for="field-email" class="form-label">Email Address</label>
+									<input
+										type="email"
+										id="field-email"
+										name="email"
+										class="form-input"
+										placeholder="jane@example.com"
+										required
+										autocomplete="email" />
+									<p class="form-error">Please enter a valid email.</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="field-type" class="form-label">Project Type</label>
+								<div style="position: relative">
+									<select id="field-type" name="project-type" class="form-select">
+										<option value="" disabled selected>Choose a category</option>
+										<option value="website">Website / Web App</option>
+										<option value="design-system">Design System</option>
+										<option value="consultation">Consultation</option>
+										<option value="other">Other</option>
+									</select>
+									<i
+										data-lucide="chevron-down"
+										style="
+											position: absolute;
+											right: 12px;
+											top: 50%;
+											transform: translateY(-50%);
+											width: 16px;
+											height: 16px;
+											color: var(--text-2);
+											pointer-events: none;
+										"></i>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="field-message" class="form-label"
+									>Tell me about your project</label
+								>
+								<textarea
+									id="field-message"
+									name="message"
+									class="form-textarea"
+									placeholder="I'd like to build..."
+									required></textarea>
+								<p class="form-error">Please describe your project.</p>
+							</div>
+							<button
+								type="submit"
+								class="cta-primary"
+								style="width: 100%; justify-content: center">
+								Send Message
+								<i data-lucide="send" style="width: 16px; height: 16px"></i>
+							</button>
+						</form>
+					</div>
+
+					<!-- Info -->
+					<div class="contact-info lg:w-80 flex flex-col gap-4 lg:pt-20">
+						<div class="contact-info-card">
+							<div class="contact-info-icon">
+								<i data-lucide="mail" style="width: 18px; height: 18px"></i>
+							</div>
+							<div>
+								<p class="contact-info-label">Email</p>
+								<a href="mailto:hello@ariachen.dev" class="contact-info-value"
+									>hello@ariachen.dev</a
+								>
+							</div>
+						</div>
+						<div class="contact-info-card">
+							<div class="contact-info-icon">
+								<i data-lucide="map-pin" style="width: 18px; height: 18px"></i>
+							</div>
+							<div>
+								<p class="contact-info-label">Location</p>
+								<p class="contact-info-value">San Francisco, CA</p>
+							</div>
+						</div>
+						<div class="contact-info-card">
+							<div class="contact-info-icon">
+								<i data-lucide="clock" style="width: 18px; height: 18px"></i>
+							</div>
+							<div>
+								<p class="contact-info-label">Response Time</p>
+								<p class="contact-info-value">Within 24 hours</p>
+							</div>
+						</div>
+
+						<!-- Social Links -->
+						<div class="mt-4 pt-4" style="border-top: 1px solid var(--border)">
+							<p
+								class="font-heading font-semibold text-sm mb-3"
+								style="color: var(--text-2)">
+								Find me online
+							</p>
+							<div class="flex gap-3">
+								<a
+									href="#"
+									class="contact-info-icon"
+									aria-label="GitHub"
+									style="
+										transition:
+											background-color 0.2s,
+											transform 0.2s;
+									"
+									onmouseenter="
+										this.style.background = 'var(--accent)';
+										this.style.color = '#fff';
+										this.style.transform = 'translateY(-2px)';
+									"
+									onmouseleave="
+										this.style.background = 'var(--accent-soft)';
+										this.style.color = 'var(--accent)';
+										this.style.transform = 'translateY(0)';
+									">
+									<i data-lucide="github" style="width: 18px; height: 18px"></i>
+								</a>
+								<a
+									href="#"
+									class="contact-info-icon"
+									aria-label="LinkedIn"
+									style="
+										transition:
+											background-color 0.2s,
+											transform 0.2s;
+									"
+									onmouseenter="
+										this.style.background = 'var(--accent)';
+										this.style.color = '#fff';
+										this.style.transform = 'translateY(-2px)';
+									"
+									onmouseleave="
+										this.style.background = 'var(--accent-soft)';
+										this.style.color = 'var(--accent)';
+										this.style.transform = 'translateY(0)';
+									">
+									<i data-lucide="linkedin" style="width: 18px; height: 18px"></i>
+								</a>
+								<a
+									href="#"
+									class="contact-info-icon"
+									aria-label="Twitter"
+									style="
+										transition:
+											background-color 0.2s,
+											transform 0.2s;
+									"
+									onmouseenter="
+										this.style.background = 'var(--accent)';
+										this.style.color = '#fff';
+										this.style.transform = 'translateY(-2px)';
+									"
+									onmouseleave="
+										this.style.background = 'var(--accent-soft)';
+										this.style.color = 'var(--accent)';
+										this.style.transform = 'translateY(0)';
+									">
+									<i data-lucide="twitter" style="width: 18px; height: 18px"></i>
+								</a>
+								<a
+									href="#"
+									class="contact-info-icon"
+									aria-label="Dribbble"
+									style="
+										transition:
+											background-color 0.2s,
+											transform 0.2s;
+									"
+									onmouseenter="
+										this.style.background = 'var(--accent)';
+										this.style.color = '#fff';
+										this.style.transform = 'translateY(-2px)';
+									"
+									onmouseleave="
+										this.style.background = 'var(--accent-soft)';
+										this.style.color = 'var(--accent)';
+										this.style.transform = 'translateY(0)';
+									">
+									<i data-lucide="dribbble" style="width: 18px; height: 18px"></i>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 		</main>
 
-		<footer>
-			<div class="container">
-				<p>&copy; 2024 Nyoman Harun. Built with HTML, CSS, Vanilla JS.</p>
+		<!-- ======== FOOTER ======== -->
+		<footer class="py-8 px-6">
+			<div
+				class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm"
+				style="color: var(--text-2)">
+				<p>&copy; 2025 Aria Chen. Made with care and lots of coffee.</p>
+				<div class="flex items-center gap-6">
+					<a
+						href="#"
+						class="hover:underline"
+						style="transition: color 0.2s"
+						onmouseenter="this.style.color = 'var(--accent)'"
+						onmouseleave="this.style.color = 'var(--text-2)'"
+						>Privacy</a
+					>
+					<a
+						href="#"
+						class="hover:underline"
+						style="transition: color 0.2s"
+						onmouseenter="this.style.color = 'var(--accent)'"
+						onmouseleave="this.style.color = 'var(--text-2)'"
+						>Imprint</a
+					>
+				</div>
 			</div>
 		</footer>
 
-		<script src="script.js" defer></script>
+		<!-- Back to Top -->
+		<button id="back-to-top" aria-label="Back to top" type="button">
+			<i data-lucide="arrow-up" style="width: 18px; height: 18px"></i>
+		</button>
+
+		<script>
+			// ============================================
+			// 初始化 Lucide 图标
+			// ============================================
+			lucide.createIcons();
+
+			// ============================================
+			// 1. Dark Mode Toggle
+			// ============================================
+			const html = document.documentElement;
+			const themeToggle = document.querySelector(".theme-toggle");
+
+			// 读取存储的主题或系统偏好
+			function getInitialTheme() {
+				const stored = localStorage.getItem("theme");
+				if (stored) return stored;
+				return window.matchMedia("(prefers-color-scheme: dark)").matches
+					? "dark"
+					: "light";
+			}
+
+			function applyTheme(theme) {
+				html.classList.remove("light", "dark");
+				html.classList.add(theme);
+				localStorage.setItem("theme", theme);
+			}
+
+			applyTheme(getInitialTheme());
+
+			themeToggle.addEventListener("click", () => {
+				const next = html.classList.contains("dark") ? "light" : "dark";
+				applyTheme(next);
+			});
+
+			// ============================================
+			// 2. Navigation — Scroll hide/show & backdrop
+			// ============================================
+			const nav = document.getElementById("nav");
+			let lastScrollY = 0;
+			let ticking = false;
+
+			function updateNav() {
+				const currentY = window.scrollY;
+				if (currentY > 60) {
+					nav.classList.add("scrolled");
+				} else {
+					nav.classList.remove("scrolled");
+				}
+				if (currentY > lastScrollY && currentY > 200) {
+					nav.classList.add("nav-hidden");
+				} else {
+					nav.classList.remove("nav-hidden");
+				}
+				lastScrollY = currentY;
+				ticking = false;
+			}
+
+			window.addEventListener(
+				"scroll",
+				() => {
+					if (!ticking) {
+						requestAnimationFrame(updateNav);
+						ticking = true;
+					}
+				},
+				{ passive: true },
+			);
+
+			// ============================================
+			// 3. Mobile Menu
+			// ============================================
+			const hamburger = document.querySelector(".hamburger");
+			const mobileMenu = document.getElementById("mobile-menu");
+			const mobileLinks = mobileMenu.querySelectorAll("a");
+			let menuOpen = false;
+
+			function toggleMenu(open) {
+				menuOpen = typeof open === "boolean" ? open : !menuOpen;
+				mobileMenu.classList.toggle("open", menuOpen);
+				mobileMenu.setAttribute("aria-hidden", !menuOpen);
+				hamburger.setAttribute("aria-expanded", menuOpen);
+				document.body.style.overflow = menuOpen ? "hidden" : "";
+
+				// 交错动画：每个链接延迟出现
+				mobileLinks.forEach((link, i) => {
+					if (menuOpen) {
+						link.style.transitionDelay = `${0.08 + i * 0.06}s`;
+					} else {
+						link.style.transitionDelay = `${(mobileLinks.length - 1 - i) * 0.03}s`;
+					}
+				});
+			}
+
+			hamburger.addEventListener("click", () => toggleMenu());
+			mobileLinks.forEach((link) =>
+				link.addEventListener("click", () => toggleMenu(false)),
+			);
+
+			// ============================================
+			// 4. Active Section Highlighting (IntersectionObserver)
+			// ============================================
+			const sections = document.querySelectorAll("main > section[id]");
+			const navLinks = document.querySelectorAll(".nav-links a");
+
+			const sectionObserver = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							const id = entry.target.id;
+							navLinks.forEach((link) => {
+								link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+							});
+						}
+					});
+				},
+				{ rootMargin: "-30% 0px -60% 0px" },
+			);
+
+			sections.forEach((sec) => sectionObserver.observe(sec));
+
+			// ============================================
+			// 5. GSAP — Hero Entrance Timeline
+			// ============================================
+			gsap.registerPlugin(ScrollTrigger);
+
+			const heroTL = gsap.timeline({ defaults: { ease: "power2.out" } });
+			heroTL
+				.to(".hero-greeting", { opacity: 1, y: 0, duration: 0.6 })
+				.to(
+					".hero-name",
+					{ opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.4)" },
+					"-=0.35",
+				)
+				.to(".hero-role", { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
+				.to(".hero-desc", { opacity: 1, y: 0, duration: 0.6 }, "-=0.35")
+				.to(".hero-cta-group", { opacity: 1, y: 0, duration: 0.6 }, "-=0.3")
+				.to(
+					".scroll-indicator",
+					{ opacity: 0.6, duration: 0.6, delay: 0.4 },
+					"-=0.2",
+				);
+
+			// Hero blob 慢速浮动
+			gsap.to(".hero-blob", {
+				y: 30,
+				duration: 6,
+				ease: "sine.inOut",
+				yoyo: true,
+				repeat: -1,
+				stagger: 1.5,
+			});
+
+			// ============================================
+			// 6. GSAP — ScrollTrigger Section Animations
+			// ============================================
+
+			// About section
+			gsap.from(".about-image", {
+				scrollTrigger: { trigger: "#about", start: "top 75%" },
+				opacity: 0,
+				x: -60,
+				scale: 0.9,
+				duration: 0.9,
+				ease: "power3.out",
+			});
+			gsap.from(".about-content > *", {
+				scrollTrigger: { trigger: "#about", start: "top 75%" },
+				opacity: 0,
+				y: 30,
+				duration: 0.6,
+				stagger: 0.1,
+				ease: "power2.out",
+			});
+
+			// Stats counter animation
+			const statValues = document.querySelectorAll(".stat-value[data-count]");
+			statValues.forEach((el) => {
+				const target = parseInt(el.dataset.count, 10);
+				const suffix = target >= 999 ? "+" : "+";
+				const displayTarget = target >= 999 ? "999" : String(target);
+
+				ScrollTrigger.create({
+					trigger: el,
+					start: "top 85%",
+					once: true,
+					onEnter: () => {
+						gsap.to(
+							{ val: 0 },
+							{
+								val: target >= 999 ? 999 : target,
+								duration: 1.5,
+								ease: "power2.out",
+								onUpdate: function () {
+									el.textContent = Math.round(this.targets()[0].val) + suffix;
+								},
+							},
+						);
+					},
+				});
+			});
+
+			// Skills cards
+			gsap.from(".skill-card", {
+				scrollTrigger: { trigger: "#skills", start: "top 75%" },
+				opacity: 0,
+				y: 40,
+				scale: 0.95,
+				duration: 0.5,
+				stagger: 0.1,
+				ease: "power2.out",
+			});
+
+			// Project cards
+			gsap.from(".project-card", {
+				scrollTrigger: { trigger: "#projects", start: "top 70%" },
+				opacity: 0,
+				y: 50,
+				duration: 0.6,
+				stagger: 0.12,
+				ease: "power2.out",
+			});
+
+			// Timeline / experience items
+			gsap.from(".timeline-item", {
+				scrollTrigger: { trigger: "#experience", start: "top 75%" },
+				opacity: 0,
+				x: -30,
+				duration: 0.6,
+				stagger: 0.15,
+				ease: "power2.out",
+			});
+
+			// FAQ items
+			gsap.from(".faq-item", {
+				scrollTrigger: { trigger: "#faq", start: "top 75%" },
+				opacity: 0,
+				y: 20,
+				duration: 0.5,
+				stagger: 0.08,
+				ease: "power2.out",
+			});
+
+			// Contact section
+			gsap.from(".contact-form", {
+				scrollTrigger: { trigger: "#contact", start: "top 75%" },
+				opacity: 0,
+				x: -40,
+				duration: 0.7,
+				ease: "power3.out",
+			});
+			gsap.from(".contact-info > *", {
+				scrollTrigger: { trigger: "#contact", start: "top 75%" },
+				opacity: 0,
+				x: 40,
+				duration: 0.5,
+				stagger: 0.1,
+				ease: "power2.out",
+			});
+
+			// ============================================
+			// 7. Hover Highlight Cards (jh3y style)
+			// ============================================
+			const highlightCards = document.querySelectorAll(".highlight-card");
+
+			highlightCards.forEach((card) => {
+				card.addEventListener("mousemove", (e) => {
+					const rect = card.getBoundingClientRect();
+					card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+					card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+				});
+			});
+
+			// ============================================
+			// 8. Accordion Logic
+			// ============================================
+			document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
+				trigger.addEventListener("click", () => {
+					const item = trigger.parentElement;
+					const content = item.querySelector(".accordion-content");
+					const inner = content.querySelector(".accordion-content-inner");
+					const isActive = item.classList.contains("active");
+
+					// 同一组内关闭其他（可选：移除此块以支持多开）
+					const siblings = item.parentElement.querySelectorAll(".accordion-item");
+					siblings.forEach((sib) => {
+						if (sib !== item && sib.classList.contains("active")) {
+							sib.classList.remove("active");
+							sib
+								.querySelector(".accordion-trigger")
+								.setAttribute("aria-expanded", "false");
+							sib.querySelector(".accordion-content").style.maxHeight = "0";
+						}
+					});
+
+					// 切换当前项
+					if (isActive) {
+						item.classList.remove("active");
+						trigger.setAttribute("aria-expanded", "false");
+						content.style.maxHeight = "0";
+					} else {
+						item.classList.add("active");
+						trigger.setAttribute("aria-expanded", "true");
+						content.style.maxHeight = inner.offsetHeight + "px";
+					}
+				});
+			});
+
+			// ============================================
+			// 9. Contact Form Validation + Toast
+			// ============================================
+			const contactForm = document.getElementById("contact-form");
+
+			function showToast(message, type) {
+				const container = document.getElementById("toast-container");
+				const toast = document.createElement("div");
+				toast.className = `toast toast-${type}`;
+				const iconName = type === "success" ? "check-circle" : "alert-circle";
+				toast.innerHTML = `
+        <i data-lucide="${iconName}" class="toast-icon" style="width:20px;height:20px;"></i>
+        <span>${message}</span>
+      `;
+				container.appendChild(toast);
+				lucide.createIcons({ nodes: [toast] });
+
+				// 触发重排后添加 show 类
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => toast.classList.add("show"));
+				});
+
+				// 3秒后移除
+				setTimeout(() => {
+					toast.classList.remove("show");
+					setTimeout(() => toast.remove(), 400);
+				}, 3500);
+			}
+
+			contactForm.addEventListener("submit", (e) => {
+				e.preventDefault();
+				let valid = true;
+
+				// 验证 Name
+				const nameGroup = contactForm
+					.querySelector('[name="name"]')
+					.closest(".form-group");
+				if (!contactForm.name.value.trim()) {
+					nameGroup.classList.add("error");
+					valid = false;
+				} else {
+					nameGroup.classList.remove("error");
+				}
+
+				// 验证 Email
+				const emailGroup = contactForm
+					.querySelector('[name="email"]')
+					.closest(".form-group");
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(contactForm.email.value.trim())) {
+					emailGroup.classList.add("error");
+					valid = false;
+				} else {
+					emailGroup.classList.remove("error");
+				}
+
+				// 验证 Message
+				const msgGroup = contactForm
+					.querySelector('[name="message"]')
+					.closest(".form-group");
+				if (!contactForm.message.value.trim()) {
+					msgGroup.classList.add("error");
+					valid = false;
+				} else {
+					msgGroup.classList.remove("error");
+				}
+
+				if (valid) {
+					showToast(
+						"Message sent successfully! I'll get back to you soon.",
+						"success",
+					);
+					contactForm.reset();
+					// 重置所有错误状态
+					contactForm
+						.querySelectorAll(".form-group")
+						.forEach((g) => g.classList.remove("error"));
+				} else {
+					showToast("Please fill in all required fields correctly.", "error");
+				}
+			});
+
+			// 实时清除错误状态
+			contactForm
+				.querySelectorAll(".form-input, .form-textarea")
+				.forEach((input) => {
+					input.addEventListener("input", () => {
+						input.closest(".form-group").classList.remove("error");
+					});
+				});
+
+			// ============================================
+			// 10. Soft Bokeh Cursor Aura
+			// ============================================
+			const bokehContainer = document.getElementById("bokeh-container");
+			const isTouchDevice =
+				"ontouchstart" in window || navigator.maxTouchPoints > 0;
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches;
+
+			if (!isTouchDevice && !prefersReducedMotion && typeof gsap !== "undefined") {
+				const PARTICLE_COUNT = 10;
+				const particles = [];
+				let mouseX = -200,
+					mouseY = -200;
+
+				for (let i = 0; i < PARTICLE_COUNT; i++) {
+					const el = document.createElement("div");
+					el.className = "bokeh-particle";
+
+					const size = 6 + Math.random() * 22;
+					const opacity = 0.06 + Math.random() * 0.12;
+					const blur = 2 + Math.random() * 6;
+					const offsetX = -80 + Math.random() * 160;
+					const offsetY = -80 + Math.random() * 160;
+
+					el.style.width = `${size}px`;
+					el.style.height = `${size}px`;
+					el.style.filter = `blur(${blur}px)`;
+					el.style.opacity = "0";
+
+					bokehContainer.appendChild(el);
+
+					// 使用 GSAP quickTo 获得最佳性能
+					const xTo = gsap.quickTo(el, "x", {
+						duration: 0.5 + Math.random() * 0.5,
+						ease: "power2.out",
+					});
+					const yTo = gsap.quickTo(el, "y", {
+						duration: 0.5 + Math.random() * 0.5,
+						ease: "power2.out",
+					});
+
+					// 呼吸缩放动画
+					gsap.to(el, {
+						scale: 0.85 + Math.random() * 0.3,
+						duration: 2 + Math.random() * 2,
+						ease: "sine.inOut",
+						yoyo: true,
+						repeat: -1,
+						delay: Math.random() * 2,
+					});
+
+					// 入场淡入
+					gsap.to(el, {
+						opacity: opacity,
+						duration: 1,
+						delay: 0.5 + i * 0.08,
+						ease: "power2.out",
+					});
+
+					particles.push({ el, xTo, yTo, offsetX, offsetY });
+				}
+
+				document.addEventListener(
+					"mousemove",
+					(e) => {
+						mouseX = e.clientX;
+						mouseY = e.clientY;
+						particles.forEach((p) => {
+							p.xTo(mouseX + p.offsetX);
+							p.yTo(mouseY + p.offsetY);
+						});
+					},
+					{ passive: true },
+				);
+
+				// 鼠标离开窗口时隐藏粒子
+				document.addEventListener("mouseleave", () => {
+					particles.forEach((p) => {
+						gsap.to(p.el, { opacity: 0, duration: 0.4 });
+					});
+				});
+				document.addEventListener("mouseenter", () => {
+					particles.forEach((p, i) => {
+						gsap.to(p.el, {
+							opacity: 0.06 + Math.random() * 0.12,
+							duration: 0.4,
+							delay: i * 0.03,
+						});
+					});
+				});
+			}
+
+			// ============================================
+			// 11. Back to Top Button
+			// ============================================
+			const backToTop = document.getElementById("back-to-top");
+
+			window.addEventListener(
+				"scroll",
+				() => {
+					backToTop.classList.toggle("visible", window.scrollY > 600);
+				},
+				{ passive: true },
+			);
+
+			backToTop.addEventListener("click", () => {
+				window.scrollTo({ top: 0, behavior: "smooth" });
+			});
+
+			// ============================================
+			// 12. Set hero elements initial state for GSAP
+			// ============================================
+			gsap.set(".hero-greeting", { y: 30 });
+			gsap.set(".hero-name", { y: 50, scale: 0.95 });
+			gsap.set(".hero-role", { y: 30 });
+			gsap.set(".hero-desc", { y: 20 });
+			gsap.set(".hero-cta-group", { y: 20 });
+
+			// 初始滚动位置检查
+			updateNav();
+			if (window.scrollY > 600) backToTop.classList.add("visible");
+		</script>
+		<script src="script.js"></script>
 	</body>
 </html>
