@@ -1,22 +1,35 @@
 <!-- @format -->
 
-Role: you are a senior frontend developer.
-Task: Bantu brainstorm desain portfolio untuk fresh graduate IT.
+## Template Promt 1
 
-Context:
+*Role: You're frontend web developer* 
 
-- Nama: nyoman harun
-- Skills: javascript, laravel, react, typescript
-- Target: STARTUP / CORPORATE
+_Task:_
+Create portfolio website with workflow "Plan-First + RTCC-O" in .md files format. So when I use those files for can generate automatically. 
 
-Constraints:
+_Context:_
+Description on portfolio website with workflow "Plan-First + RTCC-O"
 
-- Mobile-first
-- Simple tapi stand out
+Constraint:
+Theme is "Cute-alism" and in light and dark mode, but also responsive in all screen (desktop/tablet/mobile).
+Make multiple section: Hero, About, Skills, Vault (for Projects showcase), Contact  
+Should generate template using html + CSS (tailwindcss) + JavaScript (vanilla + gsap)
 
-Output:
+ 
+*Design References:* 
+CTA button - https://codepen.io/jh3y/pen/PwzeRwy
+Secondary Button - https://codepen.io/jh3y/pen/XJdLrZV
+Cards List - https://codepen.io/flyingduck92/pen/pvyRPdL
+Navigation Menu - https://codepen.io/kevinpowell/pen/vENZzBd
+Card on hover spotlight - https://codepen.io/jh3y/pen/WbwZaNa
+Shimmer Accordion - https://codepen.io/jh3y/pen/gbLOajZ
+Crossfade carousel - https://codepen.io/jh3y/pen/LERgZQQ
+Accordion - https://codepen.io/jh3y/pen/QwyYoVr
 
-1. 3 color palette options
-2. Typography recommendation
-3. Section structure
-4. 1 unique element
+ 
+_Output:_
+📋 01-brainstorm.md    → Brainstorm using AI for portfolio site
+📋 02-details.md       → Project details (RTCC-O)
+📋 03-execution.md     → Step-by-step execution
+📋 04-results.md       → Final screenshots + reflection
+📋 README.md       → Process Documentation

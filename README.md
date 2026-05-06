@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# Nyoman Harun Portfolio
+# Nyoman Harun Portfolio Vibe Coding
 
 Professional single-page portfolio website for fresh graduate IT Nyoman Harun.
 
@@ -43,5 +43,3 @@ Mobile: <768px → Hamburger menu
 Tablet: 768px → Horizontal nav + 2-col projects
 Desktop: 1280px+ → Max layout
 ```
-
-Built with HTML5, CSS3, Vanilla JS. Production-ready for recruiters.

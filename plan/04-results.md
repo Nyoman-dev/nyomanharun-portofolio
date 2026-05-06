@@ -11,12 +11,6 @@
 
 ---
 
-## Screenshot: Desktop
-
-[paste screenshot — all sections visible]
-
----
-
 ## Screenshot: Mobile
 
 ## [paste screenshot — responsive, no horizontal scroll]
